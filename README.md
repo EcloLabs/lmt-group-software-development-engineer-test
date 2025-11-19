@@ -84,7 +84,7 @@ CREATE DATABASE IF NOT EXISTS gestion_articles;
 **Appliquer les migrations Prisma :**
 
 ```bash
-npx prisma migrate dev
+npm run prisma:migrate-dev
 ```
 
 Cela créera les tables nécessaires :

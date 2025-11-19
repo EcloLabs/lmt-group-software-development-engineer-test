@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Header } from '@/components/header';
-import { Navigation } from '@/components/navigation';
-import { ArticleForm } from '@/components/article-form';
-import { DeleteDialog } from '@/components/delete-dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useEffect, useState } from "react";
+import { Header } from "@/components/header";
+import { Navigation } from "@/components/navigation";
+import { ArticleForm } from "@/components/article-form";
+import { DeleteDialog } from "@/components/delete-dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -14,27 +14,41 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, Search, Loader2, Edit, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
-import { toast } from 'sonner';
-import { Article } from '@/lib/types';
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Plus,
+  Search,
+  Loader2,
+  Edit,
+  Trash2,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { toast } from "sonner";
+import { Article } from "@/lib/types";
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [sortBy, setSortBy] = useState('created_at');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortBy, setSortBy] = useState("created_at");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [showForm, setShowForm] = useState(false);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
   const [deleteArticle, setDeleteArticle] = useState<{
@@ -51,20 +65,21 @@ export default function ArticlesPage() {
     try {
       const params = new URLSearchParams({
         page: page.toString(),
-        limit: '10',
+        limit: "10",
         search,
         sortBy,
         sortOrder,
       });
 
       const response = await fetch(`/api/articles?${params}`);
-      if (!response.ok) throw new Error('Erreur de chargement');
+      if (!response.ok) throw new Error("Erreur de chargement");
 
       const data = await response.json();
       setArticles(data.articles);
       setTotalPages(data.totalPages);
     } catch (error) {
-      toast.error('Erreur lors du chargement des articles');
+      console.log("Error fetching articles:", error);
+      toast.error("Erreur lors du chargement des articles");
     } finally {
       setLoading(false);
     }
@@ -96,17 +111,24 @@ export default function ArticlesPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-slate-900">Gestion des Articles</h2>
-          <p className="text-slate-600 mt-2">Gérez votre inventaire d'articles</p>
+          <h2 className="text-3xl font-bold text-slate-900">
+            Gestion des Articles
+          </h2>
+          <p className="text-slate-600 mt-2">
+            Gérez votre inventaire d'articles
+          </p>
         </div>
 
         <Card className="border-slate-200 shadow-sm">
           <CardHeader>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <CardTitle className="text-slate-900">Liste des Articles</CardTitle>
+                <CardTitle className="text-slate-900">
+                  Liste des Articles
+                </CardTitle>
                 <CardDescription>
-                  {articles.length} article{articles.length !== 1 ? 's' : ''} affiché{articles.length !== 1 ? 's' : ''}
+                  {articles.length} article{articles.length !== 1 ? "s" : ""}{" "}
+                  affiché{articles.length !== 1 ? "s" : ""}
                 </CardDescription>
               </div>
               <Button
@@ -139,7 +161,9 @@ export default function ArticlesPage() {
                       <SelectValue placeholder="Trier par" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="created_at">Date de création</SelectItem>
+                      <SelectItem value="created_at">
+                        Date de création
+                      </SelectItem>
                       <SelectItem value="nom">Nom</SelectItem>
                       <SelectItem value="prix">Prix</SelectItem>
                       <SelectItem value="quantite_stock">Stock</SelectItem>
@@ -167,7 +191,7 @@ export default function ArticlesPage() {
                   {search && (
                     <Button
                       variant="link"
-                      onClick={() => handleSearch('')}
+                      onClick={() => handleSearch("")}
                       className="mt-2"
                     >
                       Réinitialiser la recherche
@@ -184,8 +208,12 @@ export default function ArticlesPage() {
                           <TableHead className="font-semibold">SKU</TableHead>
                           <TableHead className="font-semibold">Prix</TableHead>
                           <TableHead className="font-semibold">Stock</TableHead>
-                          <TableHead className="font-semibold">Description</TableHead>
-                          <TableHead className="font-semibold text-right">Actions</TableHead>
+                          <TableHead className="font-semibold">
+                            Description
+                          </TableHead>
+                          <TableHead className="font-semibold text-right">
+                            Actions
+                          </TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -194,28 +222,32 @@ export default function ArticlesPage() {
                             key={article.id}
                             className="hover:bg-slate-50 transition-colors"
                           >
-                            <TableCell className="font-medium">{article.nom}</TableCell>
+                            <TableCell className="font-medium">
+                              {article.nom}
+                            </TableCell>
                             <TableCell>
                               <code className="text-xs bg-slate-100 px-2 py-1 rounded">
                                 {article.sku}
                               </code>
                             </TableCell>
-                            <TableCell>{Number(article.prix).toFixed(2)} €</TableCell>
+                            <TableCell>
+                              {Number(article.prix).toFixed(2)} €
+                            </TableCell>
                             <TableCell>
                               <span
                                 className={`px-2 py-1 rounded-full text-xs font-medium ${
                                   article.quantiteStock === 0
-                                    ? 'bg-red-100 text-red-700'
+                                    ? "bg-red-100 text-red-700"
                                     : article.quantiteStock < 10
-                                    ? 'bg-amber-100 text-amber-700'
-                                    : 'bg-green-100 text-green-700'
+                                    ? "bg-amber-100 text-amber-700"
+                                    : "bg-green-100 text-green-700"
                                 }`}
                               >
                                 {article.quantiteStock}
                               </span>
                             </TableCell>
                             <TableCell className="max-w-xs truncate">
-                              {article.description || '-'}
+                              {article.description || "-"}
                             </TableCell>
                             <TableCell className="text-right">
                               <div className="flex justify-end gap-2">
@@ -259,7 +291,9 @@ export default function ArticlesPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                        onClick={() =>
+                          setPage((p) => Math.min(totalPages, p + 1))
+                        }
                         disabled={page === totalPages}
                       >
                         <ChevronRight className="h-4 w-4" />

@@ -20,7 +20,7 @@ model User {
 model Article {
   id             Int      @id @default(autoincrement())
   nom            String   @unique
-  description    String   @default("") @db.Text
+  description    String   
   prix           Decimal  @db.Decimal(10, 2)
   quantiteStock  Int      @default(0) @map("quantite_stock")
   sku            String   @unique
