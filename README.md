@@ -1,93 +1,539 @@
-# système de gestion d’articles
+# Système de Gestion de Stock
 
+Application complète de gestion d'articles pour magasin, développée avec Next.js 14, TypeScript, Prisma ORM et MySQL.
 
+## Fonctionnalités
 
-## Getting started
+### Authentification Sécurisée
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- Système de connexion sécurisé sans inscription
+- Mots de passe hashés avec bcrypt (12 rounds)
+- Sessions JWT sécurisées avec cookies httpOnly
+- Protection automatique de toutes les routes privées
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Tableau de Bord
 
-## Add your files
+- Nombre total d'articles en stock
+- Valeur totale de l'inventaire
+- Alertes pour les 5 articles avec le stock le plus faible
+- Statistiques en temps réel avec requêtes optimisées
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Gestion des Articles (CRUD)
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/lmt-group-test-technique/systeme-de-gestion-d-articles.git
-git branch -M main
-git push -uf origin main
-```
+- **Créer** : Ajouter de nouveaux articles avec validation complète
+- **Lire** : Liste paginée avec recherche et tri
+- **Modifier** : Mise à jour des informations avec validation
+- **Supprimer** : Suppression avec confirmation préalable
 
-## Integrate with your tools
+### Fonctionnalités Avancées
 
-- [ ] [Set up project integrations](https://gitlab.com/lmt-group-test-technique/systeme-de-gestion-d-articles/-/settings/integrations)
+- Recherche par nom ou SKU
+- Tri par date, nom, prix ou stock
+- Pagination efficace (10 articles par page)
+- Génération automatique de SKU unique
+- Validation côté client et serveur
+- Notifications toast pour le feedback utilisateur
+- Interface responsive et moderne
 
-## Collaborate with your team
+## Technologies Utilisées
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **Frontend/Backend** : Next.js 14 (App Router) avec TypeScript
+- **ORM** : Prisma ORM
+- **Base de Données** : MySQL
+- **Authentification** : JWT avec jose + bcrypt
+- **Style** : Tailwind CSS + shadcn/ui
+- **Notifications** : Sonner
+- **Icônes** : Lucide React
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Prérequis
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- Node.js 18+ et npm
+- MySQL 8.0+ installé et en cours d'exécution
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Étapes d'Installation
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+1. **Cloner le projet**
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```bash
+git clone <votre-repo>
+cd <nom-du-projet>
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+2. **Installer les dépendances**
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```bash
+npm install
+```
 
-## License
-For open source projects, say how it is licensed.
+3. **Configuration de la base de données**
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Les variables d'environnement MySQL sont configurées dans le fichier `.env` :
+
+```
+DATABASE_URL="mysql://nextjs_user:test_technique@localhost:3306/gestion_articles"
+```
+
+**Créer la base de données MySQL :**
+
+```sql
+CREATE DATABASE IF NOT EXISTS gestion_articles;
+```
+
+**Appliquer les migrations Prisma :**
+
+```bash
+npx prisma migrate dev
+```
+
+Cela créera les tables nécessaires :
+
+- `users` : Utilisateurs avec authentification
+- `articles` : Articles de l'inventaire
+
+4. **Créer un utilisateur initial**
+
+Exécutez le script de seed pour créer l'utilisateur par défaut :
+
+```bash
+npm run seed
+```
+
+**Identifiants de connexion par défaut :**
+
+- Email : `admin@example.com`
+- Mot de passe : `admin123`
+
+**⚠️ IMPORTANT :** Changez ces identifiants en production !
+
+Pour créer un nouvel utilisateur, exécutez cette requête SQL dans MySQL :
+
+```sql
+INSERT INTO users (id, email, password, name, created_at)
+VALUES (
+  UUID(),
+  'votre-email@example.com',
+  '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5lW1sFKvJJZrm',
+  'Votre Nom',
+  NOW()
+);
+```
+
+Pour créer votre propre mot de passe hashé, utilisez ce code Node.js :
+
+```javascript
+const bcrypt = require("bcryptjs");
+const password = "votre-mot-de-passe";
+const hash = bcrypt.hashSync(password, 12);
+console.log(hash);
+```
+
+5. **Lancer l'application en développement**
+
+```bash
+npm run dev
+```
+
+L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
+
+6. **Build de production**
+
+```bash
+npm run build
+npm start
+```
+
+## Guide de Démarrage Rapide
+
+### Procédure Complète pour Faire Fonctionner l'Application
+
+Suivez ces étapes dans l'ordre pour démarrer l'application :
+
+#### 1. Vérifier les prérequis
+
+**Vérifier Node.js :**
+
+```bash
+node --version  # Doit être 18.0.0 ou supérieur
+npm --version
+```
+
+**Vérifier MySQL :**
+
+```bash
+mysql --version  # Doit être 8.0 ou supérieur
+```
+
+**Démarrer le service MySQL (si nécessaire) :**
+
+```bash
+# Linux/Mac
+sudo service mysql start
+# ou
+sudo systemctl start mysql
+
+# Windows
+net start MySQL80
+```
+
+**Tester la connexion MySQL :**
+
+```bash
+mysql -u nextjs_user -p
+# Entrez le mot de passe : test_technique
+```
+
+#### 2. Préparer la base de données
+
+**Se connecter à MySQL :**
+
+```bash
+mysql -u nextjs_user -ptest_technique
+```
+
+**Créer la base de données :**
+
+```sql
+CREATE DATABASE IF NOT EXISTS gestion_articles;
+SHOW DATABASES;
+EXIT;
+```
+
+#### 3. Installer et configurer le projet
+
+**Installer les dépendances :**
+
+```bash
+npm install
+```
+
+**Vérifier le fichier .env :**
+
+```bash
+cat .env
+# Doit contenir : DATABASE_URL="mysql://nextjs_user:test_technique@localhost:3306/gestion_articles"
+```
+
+**Générer le client Prisma :**
+
+```bash
+npx prisma generate
+```
+
+**Appliquer les migrations :**
+
+```bash
+npx prisma migrate dev
+# Cela va créer les tables users et articles
+```
+
+**Vérifier que les tables ont été créées :**
+
+```bash
+mysql -u nextjs_user -ptest_technique -e "USE gestion_articles; SHOW TABLES;"
+```
+
+#### 4. Initialiser les données
+
+**Créer l'utilisateur par défaut :**
+
+```bash
+npm run seed
+```
+
+**Vérifier que l'utilisateur a été créé :**
+
+```bash
+mysql -u nextjs_user -ptest_technique -e "USE gestion_articles; SELECT email, name FROM users;"
+```
+
+#### 5. Lancer l'application
+
+**Mode développement :**
+
+```bash
+npm run dev
+```
+
+**L'application sera accessible sur :**
+
+```
+http://localhost:3000
+```
+
+#### 6. Se connecter à l'application
+
+1. Ouvrez votre navigateur et allez sur `http://localhost:3000`
+2. Vous serez redirigé vers la page de connexion
+3. Utilisez les identifiants par défaut :
+   - Email : `admin@example.com`
+   - Mot de passe : `admin123`
+4. Après connexion, vous accéderez au tableau de bord
+
+### Résolution des Problèmes Courants
+
+#### Erreur : "Can't reach database server"
+
+- Vérifiez que MySQL est démarré : `sudo service mysql status`
+- Vérifiez les identifiants dans `.env`
+- Testez la connexion : `mysql -u nextjs_user -ptest_technique`
+
+#### Erreur : "Database does not exist"
+
+- Créez la base de données : `mysql -u nextjs_user -ptest_technique -e "CREATE DATABASE gestion_articles;"`
+
+#### Erreur : "Prisma Client not initialized"
+
+- Régénérez le client : `npx prisma generate`
+
+#### Erreur : "User not found" lors de la connexion
+
+- Exécutez le script de seed : `npm run seed`
+- Vérifiez que l'utilisateur existe : `mysql -u nextjs_user -ptest_technique -e "USE gestion_articles; SELECT * FROM users;"`
+
+#### L'application ne démarre pas
+
+- Vérifiez que le port 3000 est libre : `lsof -i :3000`
+- Vérifiez les logs : regardez la console pour les erreurs
+- Réinstallez les dépendances : `rm -rf node_modules && npm install`
+
+### Commandes Utiles
+
+```bash
+# Visualiser la base de données avec Prisma Studio
+npx prisma studio
+
+# Réinitialiser la base de données
+npx prisma migrate reset
+
+# Voir l'état des migrations
+npx prisma migrate status
+
+# Créer une nouvelle migration
+npx prisma migrate dev --name nom_de_la_migration
+
+# Vérifier les types TypeScript
+npm run typecheck
+
+# Build de production
+npm run build
+
+# Démarrer en production
+npm start
+```
+
+## Structure du Projet
+
+```
+├── app/
+│   ├── api/
+│   │   ├── auth/          # Routes d'authentification
+│   │   │   ├── login/
+│   │   │   ├── logout/
+│   │   │   └── me/
+│   │   ├── articles/      # Routes CRUD articles
+│   │   │   └── [id]/
+│   │   └── dashboard/     # Route statistiques
+│   ├── dashboard/         # Page tableau de bord
+│   ├── articles/          # Page gestion articles
+│   ├── login/             # Page de connexion
+│   ├── layout.tsx         # Layout principal
+│   └── page.tsx           # Page d'accueil (redirect)
+├── components/
+│   ├── ui/                # Composants shadcn/ui
+│   ├── article-form.tsx   # Formulaire article
+│   ├── delete-dialog.tsx  # Dialog de confirmation
+│   ├── header.tsx         # En-tête de l'app
+│   └── navigation.tsx     # Navigation principale
+├── lib/
+│   ├── auth.ts            # Logique d'authentification
+│   ├── prisma.ts          # Client Prisma
+│   └── utils.ts           # Utilitaires
+├── prisma/
+│   └── schema.prisma      # Schéma de base de données
+├── middleware.ts          # Protection des routes
+└── .env                   # Variables d'environnement
+```
+
+## Sécurité
+
+### Authentification
+
+- Mots de passe hashés avec bcrypt (12 rounds)
+- Sessions JWT avec expiration de 24h
+- Cookies httpOnly et secure en production
+- Protection CSRF avec sameSite: lax
+
+### Base de Données
+
+- Protection contre l'injection SQL via Prisma ORM
+- Validation des données côté serveur
+- Contraintes de base de données (UNIQUE, CHECK)
+- Transactions automatiques via Prisma
+
+### Validation
+
+- Validation côté client (formulaires)
+- Validation côté serveur (API)
+- Contraintes de base de données (CHECK, UNIQUE)
+- Messages d'erreur sécurisés (pas de fuite d'informations)
+
+## API Routes
+
+### Authentification
+
+**POST /api/auth/login**
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+**POST /api/auth/logout**
+
+**GET /api/auth/me**
+
+### Articles
+
+**GET /api/articles**
+
+- Query params: `page`, `limit`, `search`, `sortBy`, `sortOrder`
+
+**POST /api/articles**
+
+```json
+{
+  "nom": "Article 1",
+  "description": "Description",
+  "prix": 10.99,
+  "quantite_stock": 50,
+  "sku": "ART-001" // optionnel, généré automatiquement
+}
+```
+
+**GET /api/articles/[id]**
+
+**PUT /api/articles/[id]**
+
+**DELETE /api/articles/[id]**
+
+### Dashboard
+
+**GET /api/dashboard/stats**
+
+## Schéma de Base de Données
+
+### Table `users`
+
+| Colonne    | Type        | Description             |
+| ---------- | ----------- | ----------------------- |
+| id         | uuid        | Identifiant unique (PK) |
+| email      | text        | Email unique            |
+| password   | text        | Mot de passe hashé      |
+| name       | text        | Nom d'affichage         |
+| created_at | timestamptz | Date de création        |
+
+### Table `articles`
+
+| Colonne        | Type          | Description                |
+| -------------- | ------------- | -------------------------- |
+| id             | serial        | Identifiant unique (PK)    |
+| nom            | text          | Nom unique de l'article    |
+| description    | text          | Description                |
+| prix           | numeric(10,2) | Prix (≥ 0)                 |
+| quantite_stock | integer       | Quantité en stock (≥ 0)    |
+| sku            | text          | SKU unique                 |
+| created_at     | timestamptz   | Date de création           |
+| updated_at     | timestamptz   | Date de mise à jour (auto) |
+
+### Indexes
+
+- `idx_articles_nom` : Recherche par nom
+- `idx_articles_sku` : Recherche par SKU
+- `idx_articles_quantite_stock` : Tri par stock
+- `idx_articles_created_at` : Tri par date
+
+## Gestion des Erreurs
+
+### Côté Client
+
+- Notifications toast pour toutes les actions
+- Messages d'erreur conviviaux
+- États de chargement clairs
+- Gestion des erreurs réseau
+
+### Côté Serveur
+
+- Try/catch sur toutes les routes API
+- Logs d'erreur détaillés (console.error)
+- Messages d'erreur sécurisés (pas d'informations sensibles)
+- Codes HTTP appropriés (401, 404, 409, 500)
+
+## Performance
+
+### Optimisations Base de Données
+
+- Index sur les colonnes de recherche et tri
+- Requêtes optimisées avec Prisma
+- Pagination efficace avec `skip()` et `take()`
+- Sélection uniquement des colonnes nécessaires avec `select`
+
+### Optimisations Frontend
+
+- Server Components par défaut
+- Client Components uniquement pour l'interactivité
+- Chargement lazy des composants
+- Debouncing sur la recherche (via state)
+
+## Scripts Disponibles
+
+```bash
+npm run dev              # Démarrer en mode développement
+npm run build            # Build de production
+npm start                # Démarrer en production
+npm run lint             # Linter le code
+npm run typecheck        # Vérifier les types TypeScript
+npx prisma generate      # Générer le client Prisma
+npx prisma migrate dev   # Appliquer les migrations
+npx prisma studio        # Interface graphique Prisma
+```
+
+## Critères de Qualité
+
+### ✅ Qualité de Code
+
+- TypeScript strict
+- Code modulaire et réutilisable
+- Séparation des préoccupations
+- Commentaires sur la logique complexe
+- Conventions de nommage cohérentes
+
+### ✅ Performance des Requêtes
+
+- Index de base de données
+- Pagination efficace
+- Requêtes optimisées
+- Pas de N+1 queries
+
+### ✅ Gestion des Erreurs
+
+- Validation complète (client + serveur)
+- Messages d'erreur clairs
+- Logs appropriés
+- Récupération gracieuse
+
+## Support et Documentation
+
+Pour toute question ou problème :
+
+1. Vérifiez que toutes les dépendances sont installées
+2. Vérifiez la configuration de `.env`
+3. Vérifiez que la base de données est accessible
+4. Consultez les logs de la console
+
+## Licence
+
+MIT
