@@ -1,4 +1,4 @@
-# Système de Gestion de Stock
+# Système de Gestion d'Articles
 
 Application complète de gestion d'articles pour magasin, développée avec Next.js 14, TypeScript, Prisma ORM et MySQL.
 
